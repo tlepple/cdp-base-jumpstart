@@ -238,3 +238,60 @@ EOF
 	echo
 
 }
+
+#####################################################
+# Function to OS requirements
+#####################################################
+
+setup_prereqs() {
+	echo "install --> wget, epel-release, python-pip
+	echo
+
+	echo "check status of selinux..."
+	echo
+	SELINUX_STATUS=`getenforce`
+	echo "SELINUX is currently --> " $SELINUX_STATUS
+	if 
+		[ getenforce != Disabled ]
+	then  
+		setenforce 0;
+		sed -i 's/SELINUX=.*/SELINUX=disabled/' /etc/selinux/config
+	fi
+	
+	echo
+	echo "SELINUX is currently --> " getenforce
+
+	echo
+	echo "setup timezone info ..."
+	
+	#LOCAL_TIMEZONE="America/Los_Angeles"
+	#LOCAL_TIMEZONE="Europe/London"
+	#LOCAL_TIMEZONE="America/New_York"
+	LOCAL_TIMEZONE="America/Chicago"
+	ln -sf /usr/share/zoneinfo/$LOCAL_TIMEZONE /etc/localtime
+
+	echo
+	echo "turn off swappiness ..."
+	sysctl vm.swappiness=10
+	echo "vm.swappiness = 10" >> /etc/sysctl.conf
+	echo
+
+	# turn off Transparent Huge pages
+	echo "turn off Transparent Huge pages ..."
+	echo never > /sys/kernel/mm/transparent_hugepage/defrag
+	echo never > /sys/kernel/mm/transparent_hugepage/enabled
+	echo
+
+	echo "install rng-tools ..."
+	yum -y install rng-tools
+	cp /usr/lib/systemd/system/rngd.service /etc/systemd/system/
+	systemctl daemon-reload
+	systemctl start rngd
+	echo
+
+
+
+	echo "prereqs installed ..."
+	echo
+
+}
