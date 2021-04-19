@@ -141,6 +141,8 @@ install_postgres() {
         #############################################
         ## configure database conf items
         #############################################
+	echo "setup some conf items..."
+	echo
 	# allow listender from any host
 	sed -e 's,#listen_addresses = \x27localhost\x27,listen_addresses = \x27*\x27,g' -i $PG_HOME_DIR/data/postgresql.conf
 
@@ -150,6 +152,8 @@ install_postgres() {
 	#############################################
         ## Save the original & replace with a new pg_hba.conf
         #############################################
+	echo "backup pg_hba.conf"
+	echo
 	mv $PG_HOME_DIR/data/pg_hba.conf $PG_HOME_DIR/data/pg_hba.conf.orig
 
 	cat <<EOF > $PG_HOME_DIR/data/pg_hba.conf
@@ -181,11 +185,15 @@ EOF
 	#############################################
 	# restart postgresql
 	#############################################
+	echo "restart the database..."
+	echo
 	systemctl restart postgresql-11
 
  	#############################################
         # Create DDL for needed databases
         #############################################
+	echo "create the ddl script ..."
+	echo
 	cat <<EOF > ~/create_ddl_c714.sql
 CREATE ROLE das LOGIN PASSWORD 'supersecret1';
 CREATE ROLE hive LOGIN PASSWORD 'supersecret1';
@@ -221,10 +229,12 @@ EOF
 	#############################################
         # run the file
         #############################################
+	echo "run the DDL ..."
+	echo
 	sudo -u postgres psql <~/create_ddl_c714.sql
 
 
-	echo "Database installed...."
+	echo "install script complete..."
 	echo
 
 }
