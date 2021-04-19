@@ -177,10 +177,52 @@ EOF
 	chown postgres:postgres $PG_HOME_DIR/data/pg_hba.conf
 	chmod 600 $PG_HOME_DIR/data/pg_hba.conf
 
+
 	#############################################
 	# restart postgresql
 	#############################################
 	systemctl restart postgresql-11
+
+ 	#############################################
+        # Create DDL for needed databases
+        #############################################
+	cat <<EOF > ~/create_ddl_c714.sql
+CREATE ROLE das LOGIN PASSWORD 'supersecret1';
+CREATE ROLE hive LOGIN PASSWORD 'supersecret1';
+CREATE ROLE hue LOGIN PASSWORD 'supersecret1';
+CREATE ROLE oozie LOGIN PASSWORD 'supersecret1';
+CREATE ROLE rangeradmin LOGIN PASSWORD 'supersecret1';
+CREATE ROLE rman LOGIN PASSWORD 'supersecret1';
+CREATE ROLE scm LOGIN PASSWORD 'supersecret1';
+CREATE ROLE hbase LOGIN PASSWORD 'supersecret1';
+CREATE ROLE phoenix LOGIN PASSWORD 'supersecret1';
+CREATE ROLE registry LOGIN PASSWORD 'supersecret1';
+CREATE ROLE streamsmsgmgr LOGIN PASSWORD 'supersecret1';
+CREATE ROLE nifireg LOGIN PASSWORD 'supersecret1';
+CREATE ROLE efm LOGIN PASSWORD 'supersecret1';
+CREATE ROLE datagen LOGIN PASSWORD 'supersecret1';
+CREATE DATABASE das OWNER das ENCODING 'UTF-8';
+CREATE DATABASE hive OWNER hive ENCODING 'UTF-8';
+CREATE DATABASE hue OWNER hue ENCODING 'UTF-8';
+CREATE DATABASE oozie OWNER oozie ENCODING 'UTF-8';
+CREATE DATABASE ranger OWNER rangeradmin ENCODING 'UTF-8';
+CREATE DATABASE rman OWNER rman ENCODING 'UTF-8';
+CREATE DATABASE scm OWNER scm ENCODING 'UTF-8';
+CREATE DATABASE hbase OWNER hbase ENCODING 'UTF-8';
+CREATE DATABASE phoenix OWNER phoenix ENCODING 'UTF-8';
+CREATE DATABASE registry OWNER registry ENCODING 'UTF-8';
+CREATE DATABASE streamsmsgmgr OWNER streamsmsgmgr ENCODING 'UTF-8';
+CREATE DATABASE nifireg OWNER nifireg ENCODING 'UTF-8';
+CREATE DATABASE efm OWNER efm ENCODING 'UTF-8';
+CREATE DATABASE datagen OWNER datagen ENCODING 'UTF-8';
+EOF
+
+
+	#############################################
+        # run the file
+        #############################################
+	sudo -u postgres psql <~/create_ddl_c714.sql
+
 
 	echo "Database installed...."
 	echo
