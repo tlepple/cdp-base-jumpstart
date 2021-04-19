@@ -102,8 +102,9 @@ install_aws_cli() {
 
 install_postgres() {
 	# set location variables info
-	PG_REPO_URL="https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-7-x86_64/pgdg-centos11-11-2.noarch.rpm"
-	PG_HOME_DIR="/var/lib/pgsql/11.2"
+	https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/
+	PG_REPO_URL="https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm"
+	PG_HOME_DIR="/var/lib/pgsql/11"
 
 	#############################################
 	## Install Postgresql repo for Redhat
@@ -113,7 +114,7 @@ install_postgres() {
         #############################################
         ## Install the database
         #############################################
-	yum -y install postgresql112-server postgresql112-contrib postgresql112 postgresql-jdbc*
+	yum -y install postgresql11-server postgresql11-contrib postgresql11 postgresql-jdbc*
 
         #############################################
         ## setup jdbc connectors
@@ -134,8 +135,8 @@ install_postgres() {
         #############################################
         ## Enable & Start Postgres
         #############################################
-	systemctl enable postgresql-11.2
-	systemctl start postgresql-11.2
+	systemctl enable postgresql-11
+	systemctl start postgresql-11
 
         #############################################
         ## configure database conf items
@@ -179,7 +180,7 @@ EOF
 	#############################################
 	# restart postgresql
 	#############################################
-	systemctl restart postgresql-11.2
+	systemctl restart postgresql-11
 
 	echo "Database installed...."
 	echo
