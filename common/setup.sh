@@ -3,7 +3,7 @@
 ###########################################################################################################
 # import parameters and utility functions 
 ###########################################################################################################
-. utils.sh
+. common/utils.sh
 
 ###########################################################################################################
 #	install postgresql
@@ -14,3 +14,7 @@ echo "begin install postgresql..."
 install_postgres
 
 echo "database installed..."
+
+echo
+echo "install prereqs..."
+setup_prereqs
