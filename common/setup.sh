@@ -9,7 +9,7 @@
 # logging function
 log() {
     echo -e "[$(date)] [$BASH_SOURCE: $BASH_LINENO] : $*"
-
+}
 ###########################################################################################################
 #	install postgresql
 ###########################################################################################################
@@ -18,7 +18,7 @@ log() {
 echo "functions loaded..."
 
 echo "Test that user & pass have been set"
-if [[ -z "{$CLDR_REPO_USER}" ]] || [[ -z "{$CLDR_REPO_PASS}" ]]; then
+if [[ -z "${CLDR_REPO_USER}" ]] || [[ -z "${$CLDR_REPO_PASS}" ]]; then
 	log "Credentails have not been set.  Please update.  Exiting..."
 	exit 1
 fi
