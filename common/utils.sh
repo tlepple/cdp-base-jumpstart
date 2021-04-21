@@ -245,6 +245,7 @@ EOF
 
 setup_prereqs() {
 	echo "install --> wget, epel-release, python-pip"
+	yum install -y wget epel-release python-pip
 	echo
 
 	echo "check status of selinux..."
