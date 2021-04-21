@@ -23,6 +23,11 @@ if [[ -z "${CLDR_REPO_USER}" ]] || [[ -z "${CLDR_REPO_PASS}" ]]; then
 	exit 1
 fi
 
+# install prereqs
+echo
+echo "install prereqs..."
+setup_prereqs
+
 echo "install java..."
 #install_java
 
@@ -34,6 +39,3 @@ echo "begin install postgresql..."
 
 echo "database installed..."
 
-echo
-echo "install prereqs..."
-#setup_prereqs
