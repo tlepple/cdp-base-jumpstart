@@ -78,7 +78,7 @@ install_aws_cli() {
           exit 1
         fi
 
-	####################################################
+	#####################################################
  	# then install AWS CLI
 	#####################################################
   	echo "Installing AWS_CLI"
@@ -292,3 +292,18 @@ setup_prereqs() {
 	echo
 
 }
+
+#####################################################
+# Function to install java JDK
+#####################################################
+
+install_java() {
+	echo
+	echo "Check if java installed"
+	echo
+	echo "Install Java JDK"
+	# values for JDK_RPM_URL are set in file input.properties
+	rpm -ivh $JDK_RPM_URL
+}
+
+
