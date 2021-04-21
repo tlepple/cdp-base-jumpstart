@@ -264,10 +264,7 @@ setup_prereqs() {
 	echo
 	echo "setup timezone info ..."
 	
-	#LOCAL_TIMEZONE="America/Los_Angeles"
-	#LOCAL_TIMEZONE="Europe/London"
-	#LOCAL_TIMEZONE="America/New_York"
-	LOCAL_TIMEZONE="America/Chicago"
+	# the varialbe LOCAL_TIMEZONE is set from the file input.properties
 	ln -sf /usr/share/zoneinfo/$LOCAL_TIMEZONE /etc/localtime
 
 	echo
