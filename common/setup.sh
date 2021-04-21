@@ -24,7 +24,10 @@ if [[ -z "${CLDR_REPO_USER}" ]] || [[ -z "${CLDR_REPO_PASS}" ]]; then
 fi
 
 echo "install java..."
-install_java
+#install_java
+
+echo "install CM Repo..."
+install_cm_repo
 
 echo "begin install postgresql..."
 #install_postgres

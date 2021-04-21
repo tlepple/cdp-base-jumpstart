@@ -306,4 +306,13 @@ install_java() {
 	rpm -ivh $JDK_RPM_URL
 }
 
+#####################################################
+# Function to install Cloudera Manager Repo
+#####################################################
+
+install_cm_repo() {
+	# the value for $CLDR_MGR_VER_URL is set in input.properties file
+	wget $CLDR_MGR_VER_URL/cloudera-manager-trial.repo -P /etc/yum.repos.d/
+}
+
 
