@@ -302,9 +302,17 @@ install_java() {
 	echo
 	echo "Check if java installed"
 	echo
-	echo "Install Java JDK"
-	# values for JDK_RPM_URL are set in file input.properties
-#	rpm -ivh $JDK_RPM_URL
+	java_version=`java -version 2>&1`
+	if [[ $java_version = *"command not found"* ]]; then
+		echo
+		echo "Java not found.  Installing..."
+		# value for this set in input.properties file
+		yum install -y $OPEN_JDK_VERSION
+		echo "java installed."
+		echo
+	else
+		echo "Java already installed.  Skipping..."
+	fi	
 }
 
 #####################################################
