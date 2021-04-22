@@ -304,7 +304,7 @@ install_java() {
 	echo
 	echo "Install Java JDK"
 	# values for JDK_RPM_URL are set in file input.properties
-	rpm -ivh $JDK_RPM_URL
+#	rpm -ivh $JDK_RPM_URL
 }
 
 #####################################################
