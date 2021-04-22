@@ -28,11 +28,12 @@ echo
 echo "install prereqs..."
 setup_prereqs
 
-echo "install java..."
-#install_java
-
 echo "install CM Repo..."
 install_cm_repo
+
+echo "install java..."
+install_java
+
 
 echo "begin install postgresql..."
 #install_postgres
