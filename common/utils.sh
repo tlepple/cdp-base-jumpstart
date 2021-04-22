@@ -321,6 +321,11 @@ install_java() {
 
 install_cm_repo() {
 	if [[ $USE_PAYWALL = "yes" ]]; then
+		echo "Test that user & pass have been set"
+		if [[ -z "${CLDR_REPO_USER}" ]] || [[ -z "${CLDR_REPO_PASS}" ]]; then
+        		log "Credentails have not been set.  Please update.  Exiting..."
+        		exit 1
+		fi
 		wget $CLDR_MGR_VER_URL/cloudera-manager.repo -P /etc/yum.repos.d/
 		
 		#update repo with paywall credentials here
