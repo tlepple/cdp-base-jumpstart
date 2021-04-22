@@ -320,14 +320,24 @@ install_java() {
 #####################################################
 
 install_cm_repo() {
-	# the value for $CLDR_MGR_VER_URL is set in input.properties file
+	if [[ $USE_PAYWALL = "yes" ]]; then
+		wget $CLDR_MGR_VER_URL/cloudera-manager.repo -P /etc/yum.repos.d/
+		
+		#update repo with paywall credentials here
+		sed -i "s/username=changeme/username=$CLDR_REPO_USER/g" /etc/yum.repos.d/cloudera-manager.repo
+		sed -i "s/password=changeme/password=$CLDR_REPO_PASS/g" /etc/yum.repos.d/cloudera-manager.repo		
+	else
+		wget $CLDR_MGR_VER_URL/cloudera-manager-trial.repo -P /etc/yum.repos.d/
+	fi
+
+#	# the value for $CLDR_MGR_VER_URL is set in input.properties file
 	#wget $CLDR_MGR_VER_URL/cloudera-manager-trial.repo -P /etc/yum.repos.d/
-	wget $CLDR_MGR_VER_URL/cloudera-manager.repo -P /etc/yum.repos.d/
+#	wget $CLDR_MGR_VER_URL/cloudera-manager.repo -P /etc/yum.repos.d/
 	##################################################################################################
 	# Update the UserName and PWD in the repo here for paywall from values set in input.properties
 	##################################################################################################
-sed -i "s/username=changeme/username=$CLDR_REPO_USER/g" /etc/yum.repos.d/cloudera-manager.repo
-sed -i "s/password=changeme/password=$CLDR_REPO_PASS/g" /etc/yum.repos.d/cloudera-manager.repo
+#sed -i "s/username=changeme/username=$CLDR_REPO_USER/g" /etc/yum.repos.d/cloudera-manager.repo
+#sed -i "s/password=changeme/password=$CLDR_REPO_PASS/g" /etc/yum.repos.d/cloudera-manager.repo
 
 	
 }
