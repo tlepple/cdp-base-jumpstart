@@ -336,3 +336,21 @@ install_cm_repo() {
 	fi
 
 }
+
+#####################################################
+# Function to install Cloudera Manager 
+#####################################################
+
+install_cm() {
+	## Import the GPG Key
+	rpm --import $CLDR_MGR_VER_URL/RPM-GPG-KEY-cloudera
+
+	## Install CM agent and server
+	yum -y install cloudera-manager-server cloudera-manager-agent
+
+	## Run the prepare script to setup the postgres database 'scm' for CM metadata
+	/opt/cloudera/cm/schema/scm_prepare_database.sh postgresql scm scm supersecret1
+
+	## add hostname to hosts file
+	echo "`hostname -I` `hostname`" >> /etc/hosts
+}

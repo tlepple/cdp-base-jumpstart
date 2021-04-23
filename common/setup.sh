@@ -10,33 +10,68 @@
 log() {
     echo -e "[$(date)] [$BASH_SOURCE: $BASH_LINENO] : $*"
 }
+
+###########################################################################################################
+#       install pre-reqs
+###########################################################################################################
+
+log "installing pre-reqs..."
+echo
+setup_prereqs
+
+###########################################################################################################
+#       install CM Repository
+###########################################################################################################
+
+log "installing CM Repository..."
+echo
+install_cm_repo
+
+###########################################################################################################
+#       install Java from the CM Repo
+###########################################################################################################
+
+log "installing Java..."
+echo
+install_java
+
+
 ###########################################################################################################
 #	install postgresql
 ###########################################################################################################
 
-
-echo "functions loaded..."
-
-#echo "Test that user & pass have been set"
-#if [[ -z "${CLDR_REPO_USER}" ]] || [[ -z "${CLDR_REPO_PASS}" ]]; then
-#	log "Credentails have not been set.  Please update.  Exiting..."
-#	exit 1
-#fi
-
-# install prereqs
+log "installing postgresql for metadata services..."
 echo
-echo "install prereqs..."
-setup_prereqs
+install_postgres
 
-echo "install CM Repo..."
-install_cm_repo
+###########################################################################################################
+#       install Cloudera Manager
+###########################################################################################################
 
-echo "install java..."
-install_java
+log "installing Cloudera Manager..."
+echo
+install_cm
 
+###########################################################################################################
+#      setup passwordless access for root.  *** Not recommended for production workloads **
+###########################################################################################################
 
-echo "begin install postgresql..."
-#install_postgres
+log "setting up passwordless access..."
+echo
+install_pwdless_access
 
-echo "database installed..."
+###########################################################################################################
+#       Start CM 
+###########################################################################################################
+
+log "starting Cloudera Manager..."
+echo
+
+systemctl start cloudera-scm-server
+
+while [ `curl -s -X GET -u "admin:admin"  http://localhost:7180/api/version` -z ] ;
+    do
+    echo "waiting 10s for CM to come up..";
+    sleep 10;
+done
 
