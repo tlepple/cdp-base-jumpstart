@@ -69,9 +69,11 @@ echo
 
 systemctl start cloudera-scm-server
 
-while [[ `curl -s -X GET -u "admin:admin"  http://localhost:7180/api/version` -z ]];
+while [[ -z  `curl -s -X GET -u "admin:admin"  http://localhost:7180/api/version`  ]];
     do
     echo "waiting 10s for CM to come up..";
     sleep 10;
 done
 
+echo
+log "CM installed"
