@@ -13,9 +13,13 @@ sudo -i
 #install git
 yum install -y git
 
+# change directory
 cd ~
+
+# clone the repo:
 git clone https://github.com/tlepple/cdp-base-jumpstart.git
 
+# change into directory
 cd ~/cdp-base-jumpstart
 
 
