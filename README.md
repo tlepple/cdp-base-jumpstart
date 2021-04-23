@@ -22,7 +22,7 @@ cd ~/cdp-base-jumpstart
 ```
 
 
-### Edit need values in `input.properties` file
+### Edit values in the file --> `input.properties`
 
 ```
 vi ~/cdp-base-jumpstart/input.properties
