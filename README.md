@@ -28,3 +28,17 @@ cd ~/cdp-base-jumpstart
 vi ~/cdp-base-jumpstart/input.properties
 
 ```
+---
+---
+
+### Run the Build
+
+* acceptable parameter are:  `aws`, `azure`, `gcp`, `proxmox`
+
+```
+# pass the correct cloud provider to the build script.
+
+# Example:
+. setup aws
+
+```
