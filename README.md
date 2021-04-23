@@ -39,6 +39,7 @@ vi ~/cdp-base-jumpstart/input.properties
 # pass the correct cloud provider to the build script.
 
 # Example:
+
 . setup aws
 
 ```
