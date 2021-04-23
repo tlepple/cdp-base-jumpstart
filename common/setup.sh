@@ -7,9 +7,9 @@
 . common/utils.sh
 
 # logging function
-log() {
-    echo -e "[$(date)] [$BASH_SOURCE: $BASH_LINENO] : $*"
-}
+#log() {
+#    echo -e "[$(date)] [$BASH_SOURCE: $BASH_LINENO] : $*"
+#}
 
 ###########################################################################################################
 #       install pre-reqs
