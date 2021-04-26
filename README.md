@@ -46,6 +46,6 @@ vi ~/cdp-base-jumpstart/input.properties
 cd ~/cdp-base-jumpstart
 
 # Example:
-. setup aws
+. setup.sh aws
 
 ```
