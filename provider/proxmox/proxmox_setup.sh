@@ -6,13 +6,13 @@ BLOCKDEVICE=$3
 
 echo "PRIVATE_IP variable now ..."
 echo
-PRIVATE_IP=`curl https://api.ipify.org/`
+PRIVATE_IP=`ip route get 1 | awk '{print $NF;exit}'`
 
 #########################################################
 # Input parameters
 #########################################################
 
-echo "Begin install into AWS Instance from the aws_setup.sh script..."
+echo "Begin install into Proxmox Instance from the proxmox_setup.sh script..."
 
 echo "Parameter PROVIDER -->" $PROVIDER
 echo "Parameter TEMPLATE -->" $TEMPLATE
