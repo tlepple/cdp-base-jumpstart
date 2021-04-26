@@ -22,8 +22,8 @@ echo "Parameter BLOCKDEICD -->" $BLOCKDEVICE
 #time issues for clock offset in aws	
 ###########################################################################################################
 echo "setup clock offset issues for aws"
-#echo "server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4" >> /etc/chrony.conf
-#systemctl restart chronyd
+echo "server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4" >> /etc/chrony.conf
+systemctl restart chronyd
 
 ###########################################################################################################
 # install the common items from script 
