@@ -54,14 +54,14 @@ case "$CLOUD_PROVIDER" in
             ;;
         azure)
 	    echo "calling the azure_setup.sh script here... "
-#  			. $starting_dir/provider/azure/azure_setup.sh $CLOUD_PROVIDER $TEMPLATE
+  			. $starting_dir/provider/azure/azure_setup.sh $CLOUD_PROVIDER $TEMPLATE
             ;;
         gcp)
 	    echo "calling the gcp_setup.sh script here... "
-#     		. $starting_dir/provider/gcp/gcp_setup.sh $CLOUD_PROVIDER $TEMPLATE
+     		. $starting_dir/provider/gcp/gcp_setup.sh $CLOUD_PROVIDER $TEMPLATE
             ;;
         proxmox)
-	    echo "calling the prox_setup.sh script here... "
+	    echo "calling the proxmox_setup.sh script here... "
            . $starting_dir/provider/proxmox/proxmox_setup.sh $CLOUD_PROVIDER $TEMPLATE $BLOCKDEVICE
             ;;
         *)
